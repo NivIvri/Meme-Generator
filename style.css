@@ -11,7 +11,7 @@ body {
     visibility: hidden;
     height: 0;
     width: 0;
-    transition:visibility 1ms;
+    transition: visibility 1ms;
 }
 
 /*NAV-BAR*/
@@ -149,4 +149,30 @@ canvas {
     height: 68vh;
     border-radius: 15px;
     background-color: white;
+}
+
+.edit-text-container {
+    width: 445px;
+    height: 151px;
+    border-radius: 15px;
+    background-color: #19a59f;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+.edit-text-container button {
+    width: 50px;
+    height: 50px;
+    box-shadow: 1px 5px 0 rgba(92, 92, 92, 0.55), inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    border-radius: 10px;
+    background-color: #ffffff;
+    background-color: #ffffff;
+}
+
+.edit-text-container img {
+    width: 30px;
+    height: 30px;
 }
