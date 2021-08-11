@@ -152,6 +152,7 @@ canvas {
 }
 
 .edit-text-container {
+    /* Style for "Rectangle" */
     width: 445px;
     height: 151px;
     border-radius: 15px;

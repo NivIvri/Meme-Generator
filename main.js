@@ -2,6 +2,9 @@
 var gElCanvas
 var gCtx
 var gCurrText
+var x
+var y
+
 
 
 function onInit() {
@@ -10,20 +13,15 @@ function onInit() {
     console.log(gCtx);
     gCtx.stroke()
     resizeCanvas()
-    //const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
-    //createShape(center)
-    //renderCanvas()
 }
 
 
 function drawImg(elImg) {
-
     //remove gallery
     document.querySelector('.main-content-gallery').classList.add('hidden-section')
     document.querySelector('.main-content-editor').classList.remove('hidden-section')
-    //create mem
+    //create meme
     onCerteMeme(elImg);
-    console.log(elImg);
     var img = new Image()
     img.src = elImg.src;
     img.onload = () => {
@@ -52,39 +50,51 @@ function onChangeText(text) {
 
 
 
-
 function drawText(text, size, align, color) {
     var currMeme = getgMeme()
-    var textInput = document.querySelector("[name='text-box']").value
-    //gCtx.font = `${size}px Impact`
-    gCtx.font = `60px Impact`
+
+    console.log(size);
+    gCtx.font = `${size}px Impact`
+    //gCtx.font = `60px Impact`
     gCtx.fillStyle = color
     gCtx.strokeStyle = 'balck'
     gCtx.lineWidth = 1
     gCtx.align = align
     if (currMeme.selectedLineIdx === 1) {
         gCtx.textBaseline = 'top'
+        x = gElCanvas.width / 2
+        y = 0
         gCtx.fillText(text, gElCanvas.width / 2, 0, gElCanvas.width)
         gCtx.strokeText(text, gElCanvas.width / 2, 0, gElCanvas.width)
     }
     else if (currMeme.selectedLineIdx === 2) {
+        x = gElCanvas.width / 2
+        y = gElCanvas.height
         gCtx.textBaseline = 'bottom'
-        debugger
         gCtx.fillText(text, gElCanvas.width / 2, gElCanvas.height, gElCanvas.width)
         gCtx.strokeText(text, gElCanvas.width / 2, gElCanvas.height, gElCanvas.width)
     }
     else {
+        x = gElCanvas.width / 2
+        y = gElCanvas.height / 2
         gCtx.textBaseline = 'top'
         gCtx.fillText(text, gElCanvas.width / 2, gElCanvas.height / 2, gElCanvas.width)
         gCtx.strokeText(text, gElCanvas.width / 2, gElCanvas.height / 2, gElCanvas.width)
     }
+    console.log(
+    );
+    setline(x, y)
 }
 
 function onIncreaseText() {
-    //gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     increaseText()
+    renderCanvas()
 }
 
+function onDecreaseText() {
+    decreaseText()
+    renderCanvas()
+}
 
 
 function canvasClicked(ev) {
@@ -149,6 +159,71 @@ function canvasClicked(ev) {
 //  wrapText(context, text, x, y, maxWidth, lineHeight);
 
 
-function renderText() {
+function renderCanvas() {
+
+    var currImgIdx = getgMeme().selectedImgId
+    var renderImg = findImgById(currImgIdx)
+
+    var img = new Image()
+    img.src = renderImg;
+    {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    }
+    gMemes[0].lines.forEach(line => {
+        renderLine(line.text, line.color, line.align, line.size, line.x, line.y)
+    });
+}
+
+function renderLine(text, color, align, size, x, y) {
+    gCtx.font = `${size}px Impact`
+    gCtx.fillStyle = color
+    gCtx.strokeStyle = 'black'
+    gCtx.lineWidth = 1
+    console.log(align + 'cur align');
+    gCtx.align = align
+    if (y === 0) {
+        gCtx.textBaseline = 'top'
+    }
+    else {
+        if (y > gElCanvas.height / 2) {
+            gCtx.textBaseline = "bottom";
+
+        }
+        else {
+            gCtx.textBaseline = "middle";
+        }
+    }
+
+    gCtx.fillText(text, x, y, gElCanvas.width)
+    gCtx.strokeText(text, x, y, gElCanvas.width)
+}
+
+function onDeleteLine() {
+    deleteLine()
+    renderCanvas()
+
+}
+
+
+function onSwitchLines() {
+    switchLines()
+    renderCanvas()
+
+}
+
+function onChangeAlign(alignBy) {
+    changeAlign(alignBy)
+    renderCanvas()
+
+}
+
+function onMoveUp() {
+    MoveUp()
+    renderCanvas()
+
+}
+function onMoveDown() {
+    moveDown()
+    renderCanvas()
 
 }

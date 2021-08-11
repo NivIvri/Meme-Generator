@@ -49,7 +49,7 @@
           />
         </div>
         <div class="text-btn">
-          <button class="switch-btn">
+          <button class="switch-btn" onclick="onSwitchLines()">
             <img
               src="./img/up-and-down-opposite-double-arrows-side-by-side.png"
             />
@@ -57,21 +57,31 @@
           <button class="add-text-btn" onclick="onAddText()">
             <img src="./img/add.png" />
           </button>
-          <button class="remove-btn"><img src="./img/trash.png" /></button>
+          <button class="remove-btn" onclick="onDeleteLine()">
+            <img src="./img/trash.png" />
+          </button>
         </div>
         <div class="edit-text-container">
-          <button onclick="onIncreaseText()"><img src="./img/increase font - icon.png" /></button>
-          <button><img src="./img/decrease font - icon.png" /></button>
-          <button>
+          <button onclick="onIncreaseText()">
+            <img src="./img/increase font - icon.png" />
+          </button>
+          <button onclick="onDecreaseText()">
+            <img src="./img/decrease font - icon.png" />
+          </button>
+          <button onclick="onChangeAlign('left')">
             <img src="./img/align-to-left.png" />
           </button>
-          <button><img src="./img/center-text-alignment.png" /></button>
-          <button>
+          <button onclick="onChangeAlign('center')">
+            <img src="./img/center-text-alignment.png" />
+          </button>
+          <button onclick="onChangeAlign('right')">
             <img src="./img/align-to-right.png" />
           </button>
 
           <button class="change-font"></button>
           <button><img src="./img/search-icon.png" /></button>
+          <button onclick="onMoveUp()"><img src="./img/up-arrow.png" /></button>
+          <button  onclick="onMoveDown()" ><img src="./img/down-arrow.png" /></button>
         </div>
       </div>
     </main>
