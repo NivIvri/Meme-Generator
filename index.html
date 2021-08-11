@@ -1,12 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Meme Generator</title>
+  </head>
+  <body onload="onInit()">
+    <nav>
+      <div class="logo">LOGO</div>
+      <button>Gallery</button>
+      <button>About</button>
+      <button></button>
+    </nav>
+
+    <main class="main-content-gallery">
+      <div class="search-nav">
+        <input type="text" class="btn-search" />
+      </div>
+
+      <div class="image-gallery">
+        <img data-id="1" onclick="drawImg(this)" src="./img/1.jpg" />
+        <img data-id="2" onclick="drawImg(this)" src="./img/2.jpg" />
+        <img data-id="3" onclick="drawImg(this)" src="./img/3.jpg" />
+        <img data-id="4" onclick="drawImg(this)" src="./img/4.jpg" />
+        <img data-id="5" onclick="drawImg(this)" src="./img/5.jpg" />
+        <img data-id="6" onclick="drawImg(this)" src="./img/6.jpg" />
+        <img data-id="7" onclick="drawImg(this)" src="./img/7.jpg" />
+        <img data-id="8" onclick="drawImg(this)" src="./img/1.jpg" />
+        <img data-id="9" onclick="drawImg(this)" src="./img/1.jpg" />
+        <img data-id="10" onclick="drawImg(this)" src="./img/1.jpg" />
+        <img data-id="11" onclick="drawImg(this)" src="./img/1.jpg" />
+      </div>
+    </main>
+
+    <main class="main-content-editor hidden-section">
+      <div class="canvas-container">
+        <canvas id="my-canvas" onclick="canvasClicked(event)"></canvas>
+      </div>
+      <div class="editor-container">
+        <div class="text">
+          <input
+            type="text"
+            name="text-box"
+            onchange="onChangeText(this)"
+            placeholder="enter text"
+          />
+        </div>
+        <div class="text-btn">
+          <button class="switch-btn">
+            <img
+              src="./img/up-and-down-opposite-double-arrows-side-by-side.png"
+            />
+          </button>
+          <button class="add-text-btn" onclick="onAddText()">
+            <img src="./img/add.png" />
+          </button>
+          <button class="remove-btn"><img src="./img/trash.png" /></button>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="./meme.service.js"></script>
+  <script src="./main.js"></script>
 </html>
