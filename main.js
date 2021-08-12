@@ -90,23 +90,22 @@ function renderCanvas() {
 }
 
 function renderLine(text, color, align, size, x, y, strokeColor) {
-    debugger
     gCurrLine++;
     var heightY = 0
     var currMeme = getgMeme()
     switch (gCurrLine) {
         case 1:
-            heightY = 10
+            heightY = 5
             gCtx.textBaseline = 'top';
 
             break;
         case 2:
             gCtx.textBaseline = 'botton';
-            heightY = 420
+            heightY = gElCanvas.height - 60
             break;
 
         default:
-            heightY = 200
+            heightY = gElCanvas.height / 2
 
             break;
     }
@@ -114,7 +113,7 @@ function renderLine(text, color, align, size, x, y, strokeColor) {
     var fontsize = size;
     var fontface = 'Impact';
     var lineHeight = fontsize * 1.286;
-    console.log( strokeColor , '');
+    console.log(strokeColor, '');
     gCtx.strokeText = strokeColor
     gCtx.fillStyle = color
     gCtx.font = fontsize + 'px ' + fontface;
@@ -122,7 +121,7 @@ function renderLine(text, color, align, size, x, y, strokeColor) {
 
     gCtx.textAlign = align;
 
-    gCtx.fillText(text, 230, heightY);
+    gCtx.fillText(text, gElCanvas.width / 4, heightY);
 
 
     if (isSwitch) {
@@ -130,13 +129,13 @@ function renderLine(text, color, align, size, x, y, strokeColor) {
         if (gCurrLine === switchline) {
             console.log(currMeme);
             currMeme.selectedLineIdx = switchline;
-            gCtx.strokeRect(230, heightY, textWidth, lineHeight);
+            gCtx.strokeRect(gElCanvas.width / 4, heightY, textWidth, lineHeight);
         }
     }
 
     else {
         if (currMeme.selectedLineIdx === 1) {
-            gCtx.strokeRect(230, heightY, textWidth, lineHeight);
+            gCtx.strokeRect(gElCanvas.width / 4, heightY, textWidth, lineHeight);
         }
     }
 
