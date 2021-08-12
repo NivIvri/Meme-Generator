@@ -93,15 +93,18 @@ nav button {
 /*editor-container*/
 
 .main-content-editor {
+    align-items: center;
     justify-content: center;
     display: flex;
+    flex-direction: column;
+    gap: 62px;
 }
 
 .editor-container {
+    width: 94vw;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
-    width: 50vw;
     box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
     border-radius: 30px;
     background-color: #ebeef3;
@@ -114,8 +117,8 @@ nav button {
 }
 
 .text input {
-    width: 445px;
-    height: 57px;
+    width: 201px;
+    height: 43px;
     box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
     border-radius: 28px;
     background-color: #ebeef3;
@@ -140,20 +143,20 @@ nav button {
 /*CANVAS*/
 
 .canvas-container {
-    width: 50vw;
-    height: 68vh;
+    width: 100vw;
+    height: 50vh;
 }
 
 canvas {
-    width: 50vw;
-    height: 68vh;
     border-radius: 15px;
     background-color: white;
+    margin-top: 21px;
+    width: 100vw;
+    height: 50vh;
 }
 
 .edit-text-container {
     /* Style for "Rectangle" */
-    width: 445px;
     height: 151px;
     border-radius: 15px;
     background-color: #19a59f;
@@ -176,4 +179,85 @@ canvas {
 .edit-text-container img {
     width: 30px;
     height: 30px;
+}
+
+.downLoad-container {
+    gap: 54px;
+}
+
+.downLoad-btn a {
+    text-decoration: none;
+}
+
+.downLoad-btn {
+    width: 100px;
+    font-family: Poppins;
+    font-size: 21px;
+    height: 51px;
+    box-shadow: 1px 6px 0 #165c9c, inset 0 5px 0 #ffffff;
+    border-radius: 15px;
+    background-color: #1e7cd3;
+}
+
+.share-btn {
+    font-size: 21px;
+    font-family: Poppins;
+    width: 100px;
+    height: 51px;
+    box-shadow: 1px 6px 0 #632687, inset 0 5px 0 #ffffff;
+    border-radius: 15px;
+    background-color: #8f44bb;
+}
+
+.downLoad-container {
+    display: flex;
+}
+
+.btn-menu-toggle {
+    display: block;
+}
+
+@media (min-width:720px) {
+    .btn-menu-toggle {
+        display: none;
+    }
+    .main-content-editor {
+        max-width: 61.25rem;
+        margin: 0 auto;
+        flex-direction: row;
+        gap: unset;
+    }
+    canvas {
+        margin-top: unset;
+        width: 40vw;
+        height: 68vh;
+    }
+    .text input {
+        width: 445px;
+        height: 57px;
+    }
+    .edit-text-container {
+        /* Style for "Rectangle" */
+        width: 445px;
+    }
+    .canvas-container {
+        width: 40vw;
+        height: 68vh;
+    }
+    .editor-container {
+        width: 40vw;
+        height: 68vh;
+        margin-left: 10px;
+        width: 50vw;
+        padding-top: 61PX;
+    }
+    .downLoad-btn {
+        width: 213px;
+    }
+    .share-btn {
+        width: 213px;
+    }
+    .downLoad-container {
+        gap: 10px
+    }
 }

@@ -13,6 +13,8 @@
       <button>Gallery</button>
       <button>About</button>
       <button></button>
+      <button class="btn-menu-toggle fa-solid" onclick="toggleMenu()">///</button>
+
     </nav>
 
     <main class="main-content-gallery">
@@ -37,12 +39,13 @@
 
     <main class="main-content-editor hidden-section">
       <div class="canvas-container">
-        <canvas id="my-canvas" onclick="canvasClicked(event)"></canvas>
+        <canvas id="my-canvas"></canvas>
       </div>
       <div class="editor-container">
         <div class="text">
           <input
             type="text"
+            id="msg"
             name="text-box"
             onchange="onChangeText(this)"
             placeholder="enter text"
@@ -68,24 +71,51 @@
           <button onclick="onDecreaseText()">
             <img src="./img/decrease font - icon.png" />
           </button>
-          <button onclick="onChangeAlign('left')">
+          <button onclick="onChangeAlign('right')">
             <img src="./img/align-to-left.png" />
           </button>
           <button onclick="onChangeAlign('center')">
             <img src="./img/center-text-alignment.png" />
           </button>
-          <button onclick="onChangeAlign('right')">
+          <button onclick="onChangeAlign('left')">
             <img src="./img/align-to-right.png" />
           </button>
-
-          <button class="change-font"></button>
           <button><img src="./img/search-icon.png" /></button>
           <button onclick="onMoveUp()"><img src="./img/up-arrow.png" /></button>
-          <button  onclick="onMoveDown()" ><img src="./img/down-arrow.png" /></button>
+          <button onclick="onMoveDown()">
+            <img src="./img/down-arrow.png" />
+          </button>
+          <button onchange="onChangeColor()">
+            <input
+              type="color"
+              name="color"
+              style="opacity: 0; width: 100px; position: absolute"
+            />
+            <img src="./img/paint-board-and-brush.png" />
+          </button>
+          <button onchange="onChangeStroke()">
+            <input
+              type="color"
+              name="strokeColor"
+              style="opacity: 0; width: 100px; position: absolute"
+            />
+            <img src="./img/s.png" />
+          </button>        </div>
+
+        <div class="downLoad-container">
+          <button class="share-btn" onclick="uploadImg()">Share</button>
+          <button class="downLoad-btn">
+            <a href="#" onclick="downloadCanvas(this)" download="myphoto"
+              >Download</a
+            >
+          </button>
         </div>
       </div>
     </main>
   </body>
+  <script src="./upload-service.js"></script>
   <script src="./meme.service.js"></script>
+  <!--<script src="./grab-text.js"></script>-->
+  <!--<script src="./grab-service.js"></script>-->
   <script src="./main.js"></script>
 </html>

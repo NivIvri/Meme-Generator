@@ -38,19 +38,22 @@ function AddText(text) {
     gMeme.selectedLineIdx++;
     var x
     var y
+
     gMeme.lines.push({
         text: text,
-        size: 20,
-        align: 'left',
+        size: 40,
+        align: 'center',
         color: 'red',
+        strokeColor: 'black',
         x,
-        y
+        y,
     })
     var size = gMeme.lines[gMeme.selectedLineIdx - 1].size
     var text = gMeme.lines[gMeme.selectedLineIdx - 1].text
     var align = gMeme.lines[gMeme.selectedLineIdx - 1].align
     var color = gMeme.lines[gMeme.selectedLineIdx - 1].color
-    drawText(text, size, align, color)
+    var strokeColor = gMeme.lines[gMeme.selectedLineIdx - 1].strokeColor
+    drawText(text, size, align, color, strokeColor)
 }
 
 
@@ -60,7 +63,6 @@ function increaseText() {
 function decreaseText() {
     gMeme.lines[gMeme.selectedLineIdx - 1].size -= 4;
 }
-
 
 
 
@@ -76,7 +78,6 @@ function findImgById(id) {
     console.log(imgURL);
     return imgURL.url
 }
-
 
 
 function setline(x, y) {
@@ -112,16 +113,28 @@ function switchLines() {
 
 function changeAlign(alignBy) {
     gMeme.lines[gMeme.selectedLineIdx - 1].align = alignBy;
-    gMemes[0].lines[gMeme.selectedLineIdx - 1].align =alignBy;
+    gMemes[0].lines[gMeme.selectedLineIdx - 1].align = alignBy;
 
 }
 
 function MoveUp() {
-    gMeme.lines[gMeme.selectedLineIdx - 1].y-=10;
-    gMemes[0].lines[gMeme.selectedLineIdx - 1].y -=10
+    gMemes[0].lines[gMeme.selectedLineIdx - 1].y -= 12
+    gMeme.lines[gMeme.selectedLineIdx - 1].y -= 12;
 }
 
 function moveDown() {
-    gMeme.lines[gMeme.selectedLineIdx - 1].y+=10;
-    gMemes[0].lines[gMeme.selectedLineIdx - 1].y +=10
+    debugger
+
+    gMemes[0].lines[gMeme.selectedLineIdx - 1].y += 10
+    gMeme.lines[gMeme.selectedLineIdx - 1].y += 10;
+}
+function changeColor(newColor) {
+    gMemes[0].lines[gMeme.selectedLineIdx - 1].color = newColor;
+    gMeme.lines[gMeme.selectedLineIdx - 1].color = newColor;
+}
+
+function changeStroke(newColor) {
+    debugger
+    gMemes[0].lines[gMeme.selectedLineIdx - 1].strokeColor = newColor;
+    gMeme.lines[gMeme.selectedLineIdx - 1].strokeColor = newColor;
 }

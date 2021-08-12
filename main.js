@@ -16,6 +16,14 @@ function onInit() {
 }
 
 
+
+//let oldText, f;
+//window.addEventListener("load", (ev) => {
+//    drawText();
+//    document.getElementById("msg").addEventListener("input", drawText);
+//});
+
+
 function drawImg(elImg) {
     //remove gallery
     document.querySelector('.main-content-gallery').classList.add('hidden-section')
@@ -41,6 +49,7 @@ function onCerteMeme(elImg) {
 
 
 function onAddText() {
+    document.querySelector("[name='text-box']").value = ''
     AddText(gCurrText)
 }
 
@@ -50,41 +59,6 @@ function onChangeText(text) {
 
 
 
-function drawText(text, size, align, color) {
-    var currMeme = getgMeme()
-
-    console.log(size);
-    gCtx.font = `${size}px Impact`
-    //gCtx.font = `60px Impact`
-    gCtx.fillStyle = color
-    gCtx.strokeStyle = 'balck'
-    gCtx.lineWidth = 1
-    gCtx.align = align
-    if (currMeme.selectedLineIdx === 1) {
-        gCtx.textBaseline = 'top'
-        x = gElCanvas.width / 2
-        y = 0
-        gCtx.fillText(text, gElCanvas.width / 2, 0, gElCanvas.width)
-        gCtx.strokeText(text, gElCanvas.width / 2, 0, gElCanvas.width)
-    }
-    else if (currMeme.selectedLineIdx === 2) {
-        x = gElCanvas.width / 2
-        y = gElCanvas.height
-        gCtx.textBaseline = 'bottom'
-        gCtx.fillText(text, gElCanvas.width / 2, gElCanvas.height, gElCanvas.width)
-        gCtx.strokeText(text, gElCanvas.width / 2, gElCanvas.height, gElCanvas.width)
-    }
-    else {
-        x = gElCanvas.width / 2
-        y = gElCanvas.height / 2
-        gCtx.textBaseline = 'top'
-        gCtx.fillText(text, gElCanvas.width / 2, gElCanvas.height / 2, gElCanvas.width)
-        gCtx.strokeText(text, gElCanvas.width / 2, gElCanvas.height / 2, gElCanvas.width)
-    }
-    console.log(
-    );
-    setline(x, y)
-}
 
 function onIncreaseText() {
     increaseText()
@@ -125,39 +99,6 @@ function canvasClicked(ev) {
 
 
 
-//function wrapText(context, text, x, y, maxWidth, lineHeight) {
-//    var words = text.split(' ');
-//    var line = '';
-
-//    for(var n = 0; n < words.length; n++) {
-//      var testLine = line + words[n] + ' ';
-//      var metrics = context.measureText(testLine);
-//      var testWidth = metrics.width;
-//      if (testWidth > maxWidth && n > 0) {
-//        context.fillText(line, x, y);
-//        line = words[n] + ' ';
-//        y += lineHeight;
-//      }
-//      else {
-//        line = testLine;
-//      }
-//    }
-//    context.fillText(line, x, y);
-//  }
-
-//  var canvas = document.getElementById('myCanvas');
-//  var context = canvas.getContext('2d');
-//  var maxWidth = 400;
-//  var lineHeight = 25;
-//  var x = (canvas.width - maxWidth) / 2;
-//  var y = 60;
-//  var text = 'All the world \'s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts.';
-
-//  context.font = '16pt Calibri';
-//  context.fillStyle = '#333';
-
-//  wrapText(context, text, x, y, maxWidth, lineHeight);
-
 
 function renderCanvas() {
 
@@ -170,17 +111,17 @@ function renderCanvas() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
     }
     gMemes[0].lines.forEach(line => {
-        renderLine(line.text, line.color, line.align, line.size, line.x, line.y)
+        renderLine(line.text, line.color, line.align, line.size, line.x, line.y, line.strokeColor)
     });
 }
 
-function renderLine(text, color, align, size, x, y) {
+function renderLine(text, color, align, size, x, y, strokeColor) {
     gCtx.font = `${size}px Impact`
     gCtx.fillStyle = color
-    gCtx.strokeStyle = 'black'
-    gCtx.lineWidth = 1
+    gCtx.strokeStyle = strokeColor
+    gCtx.lineWidth = 2
     console.log(align + 'cur align');
-    gCtx.align = align
+    gCtx.textAlign = align
     if (y === 0) {
         gCtx.textBaseline = 'top'
     }
@@ -226,4 +167,76 @@ function onMoveDown() {
     moveDown()
     renderCanvas()
 
+}
+
+
+
+
+function drawText(text, size, align, color, strokeColor) {
+    var currMeme = getgMeme()
+    console.log(size);
+    gCtx.font = `${size}px Impact`
+    //gCtx.font = `60px Impact`
+    gCtx.fillStyle = color
+    gCtx.strokeStyle = strokeColor
+    gCtx.stroke()
+    gCtx.lineWidth = 2
+    gCtx.textAlign = align
+    if (currMeme.selectedLineIdx === 1) {
+        gCtx.textBaseline = 'top'
+        x = gElCanvas.width / 2
+        y = 0
+        gCtx.fillText(text, gElCanvas.width / 2, 0, gElCanvas.width)
+        gCtx.strokeText(text, gElCanvas.width / 2, 0, gElCanvas.width)
+    }
+    else if (currMeme.selectedLineIdx === 2) {
+        x = gElCanvas.width / 2
+        y = gElCanvas.height
+        gCtx.textBaseline = 'bottom'
+        gCtx.fillText(text, gElCanvas.width / 2, gElCanvas.height, gElCanvas.width)
+        gCtx.strokeText(text, gElCanvas.width / 2, gElCanvas.height, gElCanvas.width)
+    }
+    else {
+        x = gElCanvas.width / 2
+        y = gElCanvas.height / 2
+        gCtx.textBaseline = 'middle'
+        gCtx.fillText(text, gElCanvas.width / 2, gElCanvas.height / 2, gElCanvas.width)
+        gCtx.strokeText(text, gElCanvas.width / 2, gElCanvas.height / 2, gElCanvas.width)
+    }
+    console.log(
+    );
+    setline(x, y)
+}
+
+
+
+
+function downloadCanvas(elLink) {
+    const data = gElCanvas.toDataURL()
+    // console.log('IMG:', data);
+    elLink.href = data
+    // elLink.download = 'puki'
+}
+
+
+
+function downloadImg(elLink) {
+    var imgContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
+}
+
+function onChangeColor() {
+    var newColor = document.querySelector("[name='color']").value;
+    changeColor(newColor)
+    renderCanvas()
+}
+
+function onChangeStroke() {
+    var newColor = document.querySelector("[name='strokeColor']").value;
+    changeStroke(newColor)
+    renderCanvas()
+}
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
 }
