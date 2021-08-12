@@ -69,20 +69,18 @@ nav button {
 .image-gallery {
     height: 90vh;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
     grid-template-rows: 1fr 1fr 1fr;
-    grid-gap: 30px;
+    grid-gap: 6px;
 }
 
 .image-gallery img {
-    width: 200px;
-    height: 173px;
+    height: 150px;
 }
 
 .search-nav input {
     margin-top: 10px;
     margin-bottom: 16PX;
-    width: 541px;
     height: 58px;
     border-radius: 29px;
     background-color: #22252c;
@@ -116,6 +114,10 @@ nav button {
     margin: 0 auto;
 }
 
+.editor-container .text input {
+    margin-top: 23px;
+}
+
 .text input {
     width: 201px;
     height: 43px;
@@ -142,10 +144,10 @@ nav button {
 
 /*CANVAS*/
 
-.canvas-container {
+/*.canvas-container {
     width: 100vw;
     height: 50vh;
-}
+}*/
 
 canvas {
     border-radius: 15px;
@@ -241,10 +243,10 @@ canvas {
         /* Style for "Rectangle" */
         width: 445px;
     }
-    .canvas-container {
+    /*.canvas-container {
         width: 40vw;
         height: 68vh;
-    }
+    }*/
     .editor-container {
         width: 40vw;
         height: 68vh;
@@ -260,5 +262,19 @@ canvas {
     }
     .downLoad-container {
         gap: 10px
+    }
+    .editor-container .text input {
+        margin-top: unset;
+    }
+    .image-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        grid-gap: 30px;
+    }
+    .image-gallery img {
+        width: 200px;
+        height: 173px;
+    }
+    .search-nav input {
+        width: 541px;
     }
 }
