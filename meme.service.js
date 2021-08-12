@@ -34,6 +34,7 @@ function getgMeme() {
 }
 
 function AddText(text) {
+    debugger
     gMeme.selectedLineIdx++;
 
     gMeme.lines.push({

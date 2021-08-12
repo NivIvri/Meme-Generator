@@ -131,6 +131,7 @@ function renderLine(text, color, align, size, x, y, strokeColor) {
             currMeme.selectedLineIdx = switchline;
             gCtx.strokeRect(gElCanvas.width / 4, heightY, textWidth, lineHeight);
         }
+        
     }
 
     else {
