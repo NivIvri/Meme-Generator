@@ -57,6 +57,8 @@ function AddText(text) {
 }
 
 
+
+
 function increaseText() {
     gMeme.lines[gMeme.selectedLineIdx - 1].size += 4;
 }

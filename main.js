@@ -15,7 +15,10 @@ function onInit() {
     resizeCanvas()
 }
 
-
+//function getCanvas()
+//{
+//    return gElCanvas
+//}
 
 //let oldText, f;
 //window.addEventListener("load", (ev) => {

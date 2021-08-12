@@ -223,6 +223,7 @@ canvas {
     }
     .main-content-editor {
         max-width: 61.25rem;
+        padding-top: 40px;
         margin: 0 auto;
         flex-direction: row;
         gap: unset;
