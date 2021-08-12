@@ -31,6 +31,13 @@ function drawImg(elImg) {
     }
 }
 
+
+
+function openGallery() {
+    document.querySelector('.main-content-gallery').classList.remove('hidden-section')
+    document.querySelector('.main-content-editor').classList.add('hidden-section')
+}
+
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
@@ -107,7 +114,7 @@ function renderLine(text, color, align, size, x, y, strokeColor) {
     var fontsize = size;
     var fontface = 'Impact';
     var lineHeight = fontsize * 1.286;
-    console.log( strokeColor , 'strokeColor');
+    console.log( strokeColor , '');
     gCtx.strokeText = strokeColor
     gCtx.fillStyle = color
     gCtx.font = fontsize + 'px ' + fontface;

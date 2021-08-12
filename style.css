@@ -47,6 +47,9 @@ nav button {
     text-align: left;
     text-align: center;
 }
+input {
+    font-size: 30px;
+}
 
 .logo {
     color: #ffffff;
@@ -58,6 +61,7 @@ nav button {
     line-height: normal;
     text-align: left;
 }
+
 
 /*MAIN-CONTAINER -GALLERY*/
 
@@ -75,6 +79,7 @@ nav button {
 }
 
 .image-gallery img {
+    FLEX-BASIS: 50%;
     height: 150px;
 }
 
