@@ -2,6 +2,8 @@
 var gElCanvas
 var gCtx
 var gOldTxt = ''
+var gSwitchLine = -1
+var isSwitch
 
 
 function onInit() {
@@ -29,10 +31,6 @@ function drawImg(elImg) {
 }
 
 
-function onCreateMeme(elImg) {
-    createMeme(elImg.dataset.id)
-}
-
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
@@ -47,10 +45,10 @@ function onChangeText() {
         meme.selectedLineIdx = meme.lines.length - 1
         switch (+gMeme.selectedLineIdx) {
             case 0:
-                var posY = 30
+                var posY = 10
                 break;
             case 1:
-                var posY = gElCanvas.height
+                var posY = gElCanvas.height - 60
                 break;
 
             default:
@@ -79,23 +77,60 @@ function renderImg() {
 }
 
 function renderTxt() {
+    debugger
     var meme = getMeme()
-    meme.lines.forEach(line => {
+    meme.lines.forEach((line, index) => {
+        console.log(index + 'idx');
+        gCtx.textBaseline = 'top';
         gCtx.font = `${line.size}px Impact`
         gCtx.fillStyle = line.color
         gCtx.strokeStyle = line.strokeColor
         gCtx.lineWidth = 1
         gCtx.textAlign = line.align
+
+        var lineHeight = line.size * 1.286;
         gCtx.fillText(line.txt, line.posX, line.posY, gElCanvas.width)
         gCtx.strokeText(line.txt, line.posX, line.posY, gElCanvas.width)
-    });
+        debugger
+        if (index === meme.selectedLineIdx) {
+            gCtx.strokeRect(10, line.posY, gElCanvas.width - 20, lineHeight);
+        }
 
+    });
+}
+
+function onSwitchLines() {
+    debugger
+    var meme = getMeme()
+    isSwitch = true;
+    switch (meme.selectedLineIdx) {
+        case 3:
+            meme.selectedLineIdx = 0
+            break;
+        case 1:
+            meme.selectedLineIdx = 2
+            break;
+        case 2:
+            meme.selectedLineIdx = 0
+            break;
+        case 0:
+            meme.selectedLineIdx = 1
+            break;
+
+        default:
+            break;
+    }
+    renderImg()
+    renderTxt()
 }
 
 
 //edit functions
 
 function onAddText() {
+    debugger
+    var meme = getMeme()
+    if (meme.lines[0].txt === '') return
     document.querySelector("[name='text-box']").value = ''
     addNewLine()
     renderImg()
@@ -156,3 +191,12 @@ function onChangeAlign(alignBy) {
     renderImg()
     renderTxt()
 }
+
+
+function downloadCanvas(elLink) {
+    const data = gElCanvas.toDataURL()
+    // console.log('IMG:', data);
+    elLink.href = data
+    // elLink.download = 'puki'
+}
+

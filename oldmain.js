@@ -112,7 +112,13 @@ function renderLine(text, color, align, size, x, y, strokeColor) {
 
     var fontsize = size;
     var fontface = 'Impact';
+
+
     var lineHeight = fontsize * 1.286;
+    var textWidth = gCtx.measureText(text).width + 120;
+    gCtx.fillText(text, gElCanvas.width / 4, heightY);
+
+
     console.log(strokeColor, '');
     gCtx.strokeText = strokeColor
     gCtx.fillStyle = color

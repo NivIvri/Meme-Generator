@@ -35,16 +35,36 @@ var gMeme = {
     lines: [
         {
             txt: 'I never eat Falafel',
-            size: 20,
+            size: 40,
             align: 'center',
-            color: 'red',
+            color: 'white',
             strokeColor: 'black',
+            textBaseline: 'top',
             posX: gElCanvas.width / 2,
             posY: 30
         }
     ]
 }
 
+
+function createMeme() {
+    gMeme = {
+        selectedImgId: 5,
+        selectedLineIdx: 0,
+        lines: [
+            {
+                txt: 'I never eat Falafel',
+                size: 40,
+                align: 'center',
+                color: 'white',
+                strokeColor: 'black',
+                textBaseline: 'top',
+                posX: gElCanvas.width / 2,
+                posY: 10
+            }
+        ]
+    }
+}
 
 function getMeme() {
     return gMeme;
@@ -61,19 +81,17 @@ function findImgById(id) {
 }
 
 
-//function changeSelectedLine() {
-//    gMeme.selectedLineIdx++;
-//}
-
 function addNewLine() {
-    gMeme.selectedLineIdx++;
 
+    gMeme.selectedLineIdx++;
+    if (gMeme.selectedLineIdx === 3) return
     switch (gMeme.selectedLineIdx) {
         case 0:
-            var posY = 30
+            var posY = 10
+
             break;
         case 1:
-            var posY = gElCanvas.height
+            var posY = gElCanvas.height - 60
             break;
 
         default:
@@ -83,9 +101,9 @@ function addNewLine() {
     gMeme.lines.push(
         {
             txt: '',
-            size: 20,
-            align: 'left',
-            color: 'red',
+            size: 40,
+            align: 'center',
+            color: 'white',
             strokeColor: 'black',
             posX: gElCanvas.width / 2,
             posY
@@ -94,39 +112,47 @@ function addNewLine() {
 }
 
 function decreaseText() {
-    gMeme.lines[gMeme.selectedLineIdx - 1].size -= 5;
+    gMeme.lines[gMeme.selectedLineIdx].size -= 5;
 }
 
 function increaseText() {
-    gMeme.lines[gMeme.selectedLineIdx - 1].size += 5;
+
+    gMeme.lines[gMeme.selectedLineIdx].size += 5;
 }
 
 
 function changeColor(newColor) {
-    gMeme.lines[gMeme.selectedLineIdx - 1].color = newColor
+    gMeme.lines[gMeme.selectedLineIdx].color = newColor
 }
 
 function changeStroke(newColor) {
-    gMeme.lines[gMeme.selectedLineIdx - 1].strokeColor = newColor;
+    gMeme.lines[gMeme.selectedLineIdx].strokeColor = newColor;
 }
 
 function moveDown() {
-    gMeme.lines[gMeme.selectedLineIdx - 1].posY += 5
+    gMeme.lines[gMeme.selectedLineIdx].posY += 5
 }
 function MoveUp() {
-    gMeme.lines[gMeme.selectedLineIdx - 1].posY -= 5
+    gMeme.lines[gMeme.selectedLineIdx].posY -= 5
 }
 
 function deleteLine() {
-    var lastLine = gMeme.selectedLineIdx - 1
-    //if (lastLine !== 0) {
+    var lastLine = gMeme.selectedLineIdx
+
+    if (lastLine === 0) {
+        gMeme.lines[0].txt = ''
+        //gMeme.selectedLineIdx++;
+    }
+    //if (lastLine !== 1) {
     //    gMeme.selectedLineIdx -= 1;
     //}
-    gMeme.selectedLineIdx -= 1;
-    gMeme.lines.splice(lastLine, 1)
+    else {
+        gMeme.selectedLineIdx -= 1;
+        gMeme.lines.splice(lastLine, 1)
+    }
 
 }
 
 function changeAlign(alignBy) {
-    gMeme.lines[gMeme.selectedLineIdx - 1].align = alignBy
+    gMeme.lines[gMeme.selectedLineIdx].align = alignBy
 }
