@@ -4,7 +4,6 @@ var gCtx
 var gOldTxt = ''
 
 
-
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
@@ -44,6 +43,24 @@ function resizeCanvas() {
 function onChangeText() {
     var meme = getMeme()
     var txt = document.querySelector("[name='text-box']").value;
+    if (meme.lines.length - 1 <= meme.selectedLineIdx) {
+        meme.selectedLineIdx = meme.lines.length - 1
+        switch (+gMeme.selectedLineIdx) {
+            case 0:
+                var posY = 30
+                break;
+            case 1:
+                var posY = gElCanvas.height
+                break;
+
+            default:
+                var posY = gElCanvas.height / 2;
+                break;
+        }
+        meme.lines[meme.selectedLineIdx].posY = posY;
+
+    }
+
     meme.lines[meme.selectedLineIdx].txt = txt;
     renderImg()
     renderTxt()
@@ -75,14 +92,67 @@ function renderTxt() {
 
 }
 
-//function getCanvasWidth() {
-//    debugger
-//    const elContainer = document.querySelector('.canvas-container')
-//    width = elContainer.offsetWidth
-//    height = elContainer.offsetHeight
-//    return (width)
-//}
+
+//edit functions
+
+function onAddText() {
+    document.querySelector("[name='text-box']").value = ''
+    addNewLine()
+    renderImg()
+    renderTxt()
+}
 
 
-//console.log(getCanvasWidth());
+function onDecreaseText() {
+    decreaseText()
+    renderImg()
+    renderTxt()
+}
 
+function onIncreaseText() {
+    increaseText()
+    renderImg()
+    renderTxt()
+}
+
+
+function onChangeColor() {
+    var newColor = document.querySelector("[name='color']").value;
+    changeColor(newColor)
+    renderImg()
+    renderTxt()
+}
+
+function onChangeStroke() {
+    var newColor = document.querySelector("[name='strokeColor']").value;
+    changeStroke(newColor)
+    renderImg()
+    renderTxt()
+}
+
+
+function onMoveUp() {
+    MoveUp()
+    renderImg()
+    renderTxt()
+
+}
+function onMoveDown() {
+    moveDown()
+    renderImg()
+    renderTxt()
+}
+
+
+
+function onDeleteLine() {
+    deleteLine()
+    renderImg()
+    renderTxt()
+}
+
+function onChangeAlign(alignBy) {
+    changeAlign(alignBy)
+    renderImg()
+    renderTxt()
+}

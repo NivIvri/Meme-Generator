@@ -1,10 +1,10 @@
 'use strict'
 var gElCanvas
 
-getCanvasWidth()
+getCanvasWidthAndHeight()
 
 
-function getCanvasWidth() {
+function getCanvasWidthAndHeight() {
     gElCanvas = document.querySelector('canvas')
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
@@ -12,8 +12,6 @@ function getCanvasWidth() {
     gElCanvas.height = elContainer.offsetHeight
     console.log(gElCanvas.height + 'gElCanvas.height');
 }
-
-
 
 var gKeywords = { 'happy': 12, 'funny puk': 1 }
 var gImgs = [
@@ -38,7 +36,7 @@ var gMeme = {
         {
             txt: 'I never eat Falafel',
             size: 20,
-            align: 'left',
+            align: 'center',
             color: 'red',
             strokeColor: 'black',
             posX: gElCanvas.width / 2,
@@ -60,4 +58,75 @@ function findImgById(id) {
     })
     console.log(imgURL);
     return imgURL.url
+}
+
+
+//function changeSelectedLine() {
+//    gMeme.selectedLineIdx++;
+//}
+
+function addNewLine() {
+    gMeme.selectedLineIdx++;
+
+    switch (gMeme.selectedLineIdx) {
+        case 0:
+            var posY = 30
+            break;
+        case 1:
+            var posY = gElCanvas.height
+            break;
+
+        default:
+            var posY = gElCanvas.height / 2;
+            break;
+    }
+    gMeme.lines.push(
+        {
+            txt: '',
+            size: 20,
+            align: 'left',
+            color: 'red',
+            strokeColor: 'black',
+            posX: gElCanvas.width / 2,
+            posY
+        }
+    )
+}
+
+function decreaseText() {
+    gMeme.lines[gMeme.selectedLineIdx - 1].size -= 5;
+}
+
+function increaseText() {
+    gMeme.lines[gMeme.selectedLineIdx - 1].size += 5;
+}
+
+
+function changeColor(newColor) {
+    gMeme.lines[gMeme.selectedLineIdx - 1].color = newColor
+}
+
+function changeStroke(newColor) {
+    gMeme.lines[gMeme.selectedLineIdx - 1].strokeColor = newColor;
+}
+
+function moveDown() {
+    gMeme.lines[gMeme.selectedLineIdx - 1].posY += 5
+}
+function MoveUp() {
+    gMeme.lines[gMeme.selectedLineIdx - 1].posY -= 5
+}
+
+function deleteLine() {
+    var lastLine = gMeme.selectedLineIdx - 1
+    //if (lastLine !== 0) {
+    //    gMeme.selectedLineIdx -= 1;
+    //}
+    gMeme.selectedLineIdx -= 1;
+    gMeme.lines.splice(lastLine, 1)
+
+}
+
+function changeAlign(alignBy) {
+    gMeme.lines[gMeme.selectedLineIdx - 1].align = alignBy
 }
