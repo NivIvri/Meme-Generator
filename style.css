@@ -20,7 +20,7 @@ nav {
     margin: 0 auto;
     width: 1257px;
     display: grid;
-    grid-template-columns: 5fr 1fr 1fr 1fr;
+    grid-template-columns: 5fr 1fr 1fr;
     grid-template-rows: 1fr;
     height: 73px;
     border-radius: 37px;
@@ -47,6 +47,7 @@ nav button {
     text-align: left;
     text-align: center;
 }
+
 input {
     font-size: 30px;
 }
@@ -61,7 +62,6 @@ input {
     line-height: normal;
     text-align: left;
 }
-
 
 /*MAIN-CONTAINER -GALLERY*/
 
@@ -89,6 +89,9 @@ input {
     height: 58px;
     border-radius: 29px;
     background-color: #22252c;
+}
+.key-words{
+    margin-left: 50px;
 }
 
 /*MAIN-CONTAINER -EDITOR*/
@@ -224,6 +227,8 @@ canvas {
     display: block;
 }
 
+/*DESKTOP*/
+
 @media (min-width:720px) {
     .btn-menu-toggle {
         display: none;
@@ -282,4 +287,12 @@ canvas {
     .search-nav input {
         width: 541px;
     }
+    .search-nav {
+        display: flex;
+    }
+    .image-gallery img:hover {
+        box-shadow: inset 3px 3px 10px 0 #000000;
+        border-radius: 20px;
+    }
+    
 }

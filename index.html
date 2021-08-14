@@ -12,38 +12,16 @@
       <div class="logo">LOGO</div>
       <button onclick="openGallery()">Gallery</button>
       <button>About</button>
-      <button></button>
       <button class="btn-menu-toggle fa-solid" onclick="toggleMenu()">///</button>
 
     </nav>
 
     <main class="main-content-gallery">
       <div class="search-nav">
-        <input type="text" class="btn-search" placeholder="search"/> 
+        <input oninput="onFilterBy()" name="key-words" type="text" class="btn-search" placeholder="search"/> 
+        <div class="key-words"></div>
       </div>
-
-      <div class="image-gallery">
-        <img data-id="1" onclick="drawImg(this)" src="./img/1.jpg" />
-        <img data-id="2" onclick="drawImg(this)" src="./img/2.jpg" />
-        <img data-id="3" onclick="drawImg(this)" src="./img/3.jpg" />
-        <img data-id="4" onclick="drawImg(this)" src="./img/4.jpg" />
-        <img data-id="5" onclick="drawImg(this)" src="./img/5.jpg" />
-        <img data-id="6" onclick="drawImg(this)" src="./img/6.jpg" />
-        <img data-id="7" onclick="drawImg(this)" src="./img/7.jpg" />
-        <img data-id="8" onclick="drawImg(this)" src="./img/8.jpg" />
-        <img data-id="9" onclick="drawImg(this)" src="./img/9.jpg" />
-        <img data-id="10" onclick="drawImg(this)" src="./img/10.jpg" />
-        <img data-id="11" onclick="drawImg(this)" src="./img/11.jpg" />
-        <img data-id="11" onclick="drawImg(this)" src="./img/12.jpg" />
-        <img data-id="11" onclick="drawImg(this)" src="./img/13.jpg" />
-        <img data-id="11" onclick="drawImg(this)" src="./img/14.jpg" />
-        <img data-id="11" onclick="drawImg(this)" src="./img/15.jpg" />
-        <img data-id="11" onclick="drawImg(this)" src="./img/16.jpg" />
-        <img data-id="11" onclick="drawImg(this)" src="./img/17.jpg" />
-        <img data-id="11" onclick="drawImg(this)" src="./img/18.jpg" />
-        <img data-id="11" onclick="drawImg(this)" src="./img/1.jpg" />
-        <img data-id="11" onclick="drawImg(this)" src="./img/2.jpg" />
-        <img data-id="11" onclick="drawImg(this)" src="./img/3.jpg" />
+      <div class="image-gallery" onload="getImg()">
       </div>
     </main>
 
@@ -124,6 +102,7 @@
     </main>
   </body>
   <script src="./upload-service.js"></script>
+  <script src="./data.js"></script>
   <script src="./meme.service.js"></script>
   <!--<script src="./grab-text.js"></script>-->
   <!--<script src="./grab-service.js"></script>-->

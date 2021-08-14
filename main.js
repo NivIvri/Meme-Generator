@@ -3,7 +3,6 @@ var gElCanvas
 var gCtx
 var gOldTxt = ''
 var gSwitchLine = -1
-var isSwitch
 
 
 function onInit() {
@@ -11,6 +10,8 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
     gCtx.stroke()
     resizeCanvas()
+    document.querySelector('.image-gallery').innerHTML = getGalleryImgs()
+
 }
 
 
@@ -66,7 +67,8 @@ function onChangeText() {
 
 
 function renderImg() {
-    var currImgIdx = getMeme().selectedImgId
+    var meme = getMeme()
+    var currImgIdx = meme.selectedImgId
     var renderImg = findImgById(currImgIdx)
     var img = new Image()
     img.src = renderImg;
@@ -77,7 +79,6 @@ function renderImg() {
 }
 
 function renderTxt() {
-    debugger
     var meme = getMeme()
     meme.lines.forEach((line, index) => {
         console.log(index + 'idx');
@@ -91,7 +92,7 @@ function renderTxt() {
         var lineHeight = line.size * 1.286;
         gCtx.fillText(line.txt, line.posX, line.posY, gElCanvas.width)
         gCtx.strokeText(line.txt, line.posX, line.posY, gElCanvas.width)
-        debugger
+
         if (index === meme.selectedLineIdx) {
             gCtx.strokeRect(10, line.posY, gElCanvas.width - 20, lineHeight);
         }
@@ -99,36 +100,37 @@ function renderTxt() {
     });
 }
 
-function onSwitchLines() {
-    debugger
-    var meme = getMeme()
-    isSwitch = true;
-    switch (meme.selectedLineIdx) {
-        case 3:
-            meme.selectedLineIdx = 0
-            break;
-        case 1:
-            meme.selectedLineIdx = 2
-            break;
-        case 2:
-            meme.selectedLineIdx = 0
-            break;
-        case 0:
-            meme.selectedLineIdx = 1
-            break;
 
-        default:
-            break;
+
+function renderGallery(idxs) {
+    var strHtml = ''
+
+    strHtml += idxs.map(id => {
+        console.log(strHtml);
+        return `<img data-id="${id}" onclick="drawImg(this)" src="./img/${id}.jpg" />`
+    }).join('')
+
+    if (idxs.length === 0) {
+        strHtml = getGalleryImgs()
     }
-    renderImg()
-    renderTxt()
+    document.querySelector('.image-gallery').innerHTML = strHtml
+}
+renderKeywords()
+function renderKeywords() {
+    //var gKeywords = { 'baby': 1, 'cute': 5, 'men': 3, 'happy': 5, 'animals': 1, 'smile': 6 }
+    var keyWords = getKeywords()
+    var strHtml = ''
+
+    for (var i in keyWords) {
+        strHtml += `<span style="font-size:${keyWords[i] * 5}px"> ${i}</span>`
+    }
+    document.querySelector('.key-words').innerHTML = strHtml
 }
 
 
-//edit functions
+//EDIT FUNCTIONS
 
 function onAddText() {
-    debugger
     var meme = getMeme()
     if (meme.lines[0].txt === '') return
     document.querySelector("[name='text-box']").value = ''
@@ -178,8 +180,6 @@ function onMoveDown() {
     renderTxt()
 }
 
-
-
 function onDeleteLine() {
     deleteLine()
     renderImg()
@@ -200,3 +200,39 @@ function downloadCanvas(elLink) {
     // elLink.download = 'puki'
 }
 
+function onSwitchLines() {
+    var meme = getMeme()
+    if (meme.selectedLineIdx < 2) {
+        meme.selectedLineIdx++;
+    }
+    else {
+        meme.selectedLineIdx = 0
+
+    }
+    renderImg()
+    renderTxt()
+}
+//CSS
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
+}
+
+function openGallery() {
+    var meme =getMeme()
+        meme.lines.map(line => {
+        line.txt = ''
+    })
+    document.querySelector("[name='text-box']").valu = ""
+    document.querySelector('.main-content-gallery').classList.remove('hidden-section')
+    document.querySelector('.main-content-editor').classList.add('hidden-section')
+    //render all images gallery
+    document.querySelector("[name='key-words']").value = ''
+    renderGallery([])
+
+}
+
+function onFilterBy() {
+    var filterByKey = document.querySelector("[name='key-words']").value.toLowerCase();
+    filterBy(filterByKey)
+}
