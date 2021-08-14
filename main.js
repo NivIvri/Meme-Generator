@@ -105,7 +105,7 @@ function renderGallery(idxs) {
 
     else {
         strHtml += idxs.map(id => {
-            return `<img data-id="${id}" onclick="drawImg(this)" src="./img/${id}.jpg" />`
+            return `<a href="#"><img data-id="${id}" onclick="drawImg(this)" src="./img/${id}.jpg" /></a>`
         }).join('')
 
     }

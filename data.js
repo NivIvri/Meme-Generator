@@ -24,27 +24,28 @@ var gImgs = [
 
 
 var galleryImgs =
-    `        <img data-id="1" onclick="drawImg(this)" src="./img/1.jpg" />
-<img data-id="2" onclick="drawImg(this)" src="./img/2.jpg" />
-<img data-id="3" onclick="drawImg(this)" src="./img/3.jpg" />
-<img data-id="4" onclick="drawImg(this)" src="./img/4.jpg" />
-<img data-id="5" onclick="drawImg(this)" src="./img/5.jpg" />
-<img data-id="6" onclick="drawImg(this)" src="./img/6.jpg" />
-<img data-id="7" onclick="drawImg(this)" src="./img/7.jpg" />
-<img data-id="8" onclick="drawImg(this)" src="./img/8.jpg" />
-<img data-id="9" onclick="drawImg(this)" src="./img/9.jpg" />
-<img data-id="10" onclick="drawImg(this)" src="./img/10.jpg" />
-<img data-id="11" onclick="drawImg(this)" src="./img/11.jpg" />
-<img data-id="11" onclick="drawImg(this)" src="./img/12.jpg" />
-<img data-id="11" onclick="drawImg(this)" src="./img/13.jpg" />
-<img data-id="11" onclick="drawImg(this)" src="./img/14.jpg" />
-<img data-id="11" onclick="drawImg(this)" src="./img/15.jpg" />
-<img data-id="11" onclick="drawImg(this)" src="./img/16.jpg" />
-<img data-id="11" onclick="drawImg(this)" src="./img/17.jpg" />
-<img data-id="11" onclick="drawImg(this)" src="./img/18.jpg" />
-<img data-id="11" onclick="drawImg(this)" src="./img/1.jpg" />
-<img data-id="11" onclick="drawImg(this)" src="./img/2.jpg" />
-<img data-id="11" onclick="drawImg(this)" src="./img/3.jpg" />`
+
+    `      <a href="#">  <img data-id="1" onclick="drawImg(this)" src="./img/1.jpg" /></a>
+    <a href="#"> <img data-id="2" onclick="drawImg(this)" src="./img/2.jpg" /></a>
+    <a href="#"><img data-id="3" onclick="drawImg(this)" src="./img/3.jpg" /></a>
+    <a href="#"><img data-id="4" onclick="drawImg(this)" src="./img/4.jpg" /></a>
+    <a href="#"><img data-id="5" onclick="drawImg(this)" src="./img/5.jpg" /></a>
+    <a href="#"><img data-id="6" onclick="drawImg(this)" src="./img/6.jpg" /></a>
+    <a href="#"><img data-id="7" onclick="drawImg(this)" src="./img/7.jpg" /></a>
+    <a href="#"><img data-id="8" onclick="drawImg(this)" src="./img/8.jpg" /></a>
+    <a href="#"><img data-id="9" onclick="drawImg(this)" src="./img/9.jpg" /></a>
+    <a href="#"><img data-id="10" onclick="drawImg(this)" src="./img/10.jpg" /></a>
+    <a href="#"><img data-id="11" onclick="drawImg(this)" src="./img/11.jpg" /></a>
+    <a href="#"><img data-id="11" onclick="drawImg(this)" src="./img/12.jpg" /></a>
+    <a href="#"><img data-id="11" onclick="drawImg(this)" src="./img/13.jpg" /></a>
+    <a href="#"><img data-id="11" onclick="drawImg(this)" src="./img/14.jpg" /></a>
+    <a href="#"><img data-id="11" onclick="drawImg(this)" src="./img/15.jpg" /></a>
+    <a href="#"><img data-id="11" onclick="drawImg(this)" src="./img/16.jpg" /></a>
+    <a href="#"><img data-id="11" onclick="drawImg(this)" src="./img/17.jpg" /></a>
+    <a href="#"><img data-id="11" onclick="drawImg(this)" src="./img/18.jpg" /></a>
+    <a href="#"><img data-id="11" onclick="drawImg(this)" src="./img/1.jpg" />
+    <a href="#"><img data-id="11" onclick="drawImg(this)" src="./img/2.jpg" /></a>
+    <a href="#"><img data-id="11" onclick="drawImg(this)" src="./img/3.jpg" /></a>`
 
 
 var gKeywords = { 'baby': 3, 'cute': 5, 'men': 10, 'happy': 5, 'animals': 8, 'smile': 6 }
