@@ -48,7 +48,7 @@ var galleryImgs =
     <a href="#"><img data-id="11" onclick="drawImg(this)" src="./img/3.jpg" /></a>`
 
 
-var gKeywords = { 'baby': 3, 'cute': 5, 'men': 10, 'happy': 5, 'animals': 8, 'smile': 6 }
+var gKeywords = { 'baby': 20, 'cute': 20, 'men': 20, 'happy':20, 'animals':20, 'smile': 20 }
 
 
 
@@ -56,7 +56,7 @@ var gKeywords = { 'baby': 3, 'cute': 5, 'men': 10, 'happy': 5, 'animals': 8, 'sm
 function getMemefromData() {
     return gMeme
 }
-function getKeywords() {
+function getgKeywords() {
     return gKeywords
 }
 function getgImg() {
@@ -66,20 +66,3 @@ function getGalleryImgs() {
     return galleryImgs
 }
 
-
-function filterBy(filterByKey) {
-    var filterImgGallery = gImgs.filter(img => {
-        return img.keywords.some(keyWord => {
-            return (keyWord === filterByKey)
-        })
-    })
-    getIDfromgImg(filterImgGallery)
-}
-
-
-function getIDfromgImg(filterImgGallery) {
-    var idxs = filterImgGallery.map(img => {
-        return img.id
-    })
-    renderGallery(idxs)
-}

@@ -1,7 +1,10 @@
 'use strict'
 var gElCanvas
-
+const KEY = 'KEY_WORDS_DB'
+var gKeywords
 getCanvasWidthAndHeight()
+_createKeyWords()
+
 
 var gImgs = getgImg()
 var gMeme
@@ -18,6 +21,7 @@ function creategMeme() {
                 color: 'white',
                 strokeColor: 'black',
                 textBaseline: 'top',
+                font: 'Impact',
                 posX: gElCanvas.width / 2,
                 posY: 30
             }
@@ -72,6 +76,7 @@ function addNewLine() {
             align: 'center',
             color: 'white',
             strokeColor: 'black',
+            font: 'Impact',
             posX: gElCanvas.width / 2,
             posY
         }
@@ -118,6 +123,68 @@ function deleteLine() {
 
 function changeAlign(alignBy) {
     gMeme.lines[gMeme.selectedLineIdx].align = alignBy
+}
+
+
+function ChangeFont() {
+    var currFont = gMeme.lines[gMeme.selectedLineIdx].font
+    if (currFont === "Impact") {
+        gMeme.lines[gMeme.selectedLineIdx].font = 'Tahoma'
+    }
+    else {
+        gMeme.lines[gMeme.selectedLineIdx].font = 'Impact'
+
+    }
+}
+
+
+//filter images
+
+function filterBy(filterByWord) {
+    var filterImgGallery = gImgs.filter(img => {
+        return img.keywords.some(keyWord => {
+            return (keyWord === filterByWord)
+        })
+    })
+    getIdfromgImg(filterImgGallery)
+}
+
+
+function getIdfromgImg(filterImgGallery) {
+    var idxs = filterImgGallery.map(img => {
+        return img.id
+    })
+    renderGallery(idxs)
+}
+
+function _createKeyWords() {
+    debugger
+    var loadedKeyWOrds = loadFromStorage(KEY)
+
+    if (!loadedKeyWOrds) {
+        loadedKeyWOrds = getgKeywords()
+    }
+    gKeywords = loadedKeyWOrds
+    _saveKeyWordsToStorage()
+}
+
+function _saveKeyWordsToStorage() {
+    saveToStorage(KEY, gKeywords)
+}
+
+function getKeywords() {
+    return gKeywords
+}
+
+function changeFontSize(filterByWord) {
+    debugger
+    gKeywords = loadFromStorage(KEY)
+    for (var i in gKeywords) {
+        if (filterByWord === i) {
+            gKeywords[i] += 5;
+        }
+    }
+    _saveKeyWordsToStorage()
 }
 
 

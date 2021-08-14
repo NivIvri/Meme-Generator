@@ -72,7 +72,7 @@ function renderTxt() {
     var meme = getMeme()
     meme.lines.forEach((line, index) => {
         gCtx.textBaseline = 'top';
-        gCtx.font = `${line.size}px Impact`
+        gCtx.font = `${line.size}px ${line.font}`
         gCtx.fillStyle = line.color
         gCtx.strokeStyle = line.strokeColor
         gCtx.lineWidth = 2
@@ -86,6 +86,7 @@ function renderTxt() {
         if (index === meme.selectedLineIdx) {
             gCtx.strokeRect(10, line.posY, gElCanvas.width - 20, lineHeight);
         }
+
 
     });
 }
@@ -118,9 +119,10 @@ function renderKeywords() {
     var strHtml = ''
 
     for (var i in keyWords) {
-        strHtml += `<span style="font-size:${keyWords[i] * 5}px"> ${i}</span>`
+        strHtml += `<span style="font-size:${keyWords[i] + 5}px"> ${i}</span>`
     }
     document.querySelector('.key-words').innerHTML = strHtml
+
 }
 
 
@@ -177,6 +179,7 @@ function onMoveDown() {
 }
 
 function onDeleteLine() {
+    document.querySelector("[name='text-box']").value = ''
     deleteLine()
     renderImg()
     renderTxt()
@@ -207,12 +210,14 @@ function onSwitchLines() {
     renderTxt()
 }
 
+function onChangeFont() {
+    ChangeFont()
+    renderImg()
+    renderTxt()
+}
 
 //filter data
 
-function toggleMenu() {
-    document.body.classList.toggle('menu-open');
-}
 
 function openGallery() {
     onInit()
@@ -226,6 +231,8 @@ function openGallery() {
 }
 
 function onFilterBy() {
-    var filterByKey = document.querySelector("[name='key-words']").value.toLowerCase();
-    filterBy(filterByKey)
+    var filterByWord = document.querySelector("[name='key-words']").value.toLowerCase();
+    changeFontSize(filterByWord)
+    filterBy(filterByWord)
+    renderKeywords()
 }

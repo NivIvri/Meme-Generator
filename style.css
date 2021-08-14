@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: gray;
+    background-color: #383B42;
     margin: 0;
 }
 
@@ -17,17 +17,19 @@ body {
 /*NAV-BAR*/
 
 nav {
-    margin: 0 auto;
     width: 100%;
-    display: grid;
-    grid-template-columns: 5fr 1fr 1fr;
-    grid-template-rows: 1fr;
     height: 73px;
-    border-radius: 37px;
     background-color: #5970c1;
+    border-radius: 37px;
+    display: grid;
+    grid-template-columns: 6fr 1fr 1fr;
+    grid-template-rows: 1fr;
     background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
-    align-items: center;
     justify-content: flex-end;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 15px;
+
 }
 
 nav button {
@@ -61,7 +63,9 @@ input {
     letter-spacing: normal;
     line-height: normal;
     text-align: left;
+    margin-left: 7px;
 }
+
 
 /*MAIN-CONTAINER -GALLERY*/
 
@@ -84,18 +88,26 @@ input {
 .image-gallery img {
     height: 170px;
     width: 170px;
+    border-radius: 10px;
 }
 
 .search-nav input {
-    margin-top: 10px;
-    margin-bottom: 16PX;
+    margin-top: 30px;
+    border: none;
     height: 58px;
     border-radius: 29px;
     background-color: #22252c;
 }
 
+
 .key-words {
-    margin-left: 50px;
+    background-color: #87898D;
+    color: #FEFEFE;
+    padding-left: 32px;
+    border-radius: 49px;
+    margin: 0 auto;
+    margin-bottom: 21px;
+    margin-top: 26px;
 }
 
 /*MAIN-CONTAINER -EDITOR*/
@@ -116,7 +128,7 @@ input {
     display: flex;
     flex-direction: column;
     box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
-    border-radius: 30px;
+    border-radius: 15px;
     background-color: #ebeef3;
     opacity: 0.70;
     gap: 15px;
@@ -296,5 +308,19 @@ canvas {
     }
     .image-gallery img:hover {
         box-shadow: 0 0 0rem 0px #fff, 0 0 0rem #fff, 0 0 1rem #fff, 0 0 0rem #fff, 0 0 0rem #fff, inset 0 0 0rem #fff;
+    }
+    .key-words {
+        height: 58px;
+        width: 540px;
+        background-color: #87898D;
+        color: #FEFEFE;
+        padding-left: 32px;
+        border-radius: 49px;
+        margin-left: 50px;
+    }
+    .search-nav > *
+    {
+        margin-top: 26px;
+        margin-bottom: 27px;
     }
 }
