@@ -73,14 +73,17 @@ input {
 .image-gallery {
     height: 90vh;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-gap: 6px;
+    grid-template-columns: 170px 170px;
+    grid-template-rows: 170px 170px;
+    grid-gap: 18px;
+    /* justify-items: stretch; */
+    /* align-items: start; */
+    justify-content: center;
 }
 
 .image-gallery img {
-    FLEX-BASIS: 50%;
-    height: 150px;
+    height: 170px;
+    width: 170px;
 }
 
 .search-nav input {
