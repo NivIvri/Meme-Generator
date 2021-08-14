@@ -211,7 +211,7 @@ function onSwitchLines() {
 }
 
 function onChangeFont() {
-    ChangeFont()
+    changeFont()
     renderImg()
     renderTxt()
 }

@@ -21,7 +21,7 @@ function creategMeme() {
                 color: 'white',
                 strokeColor: 'black',
                 textBaseline: 'top',
-                font: 'Impact',
+                font: 'Impact ,sans serif',
                 posX: gElCanvas.width / 2,
                 posY: 30
             }
@@ -76,7 +76,7 @@ function addNewLine() {
             align: 'center',
             color: 'white',
             strokeColor: 'black',
-            font: 'Impact',
+            font: 'Impact, sans serif',
             posX: gElCanvas.width / 2,
             posY
         }
@@ -126,13 +126,13 @@ function changeAlign(alignBy) {
 }
 
 
-function ChangeFont() {
+function changeFont() {
     var currFont = gMeme.lines[gMeme.selectedLineIdx].font
-    if (currFont === "Impact") {
-        gMeme.lines[gMeme.selectedLineIdx].font = 'Tahoma'
+    if (currFont === "Impact ,sans serif") {
+        gMeme.lines[gMeme.selectedLineIdx].font = 'Tahoma, sans serif'
     }
     else {
-        gMeme.lines[gMeme.selectedLineIdx].font = 'Impact'
+        gMeme.lines[gMeme.selectedLineIdx].font = 'Impact ,sans serif'
 
     }
 }
