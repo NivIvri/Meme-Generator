@@ -3,8 +3,6 @@ var gElCanvas
 
 getCanvasWidthAndHeight()
 
-
-
 var gImgs = getgImg()
 var gMeme
 

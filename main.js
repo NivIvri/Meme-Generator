@@ -1,8 +1,6 @@
 'use strict'
 var gElCanvas
 var gCtx
-var gOldTxt = ''
-var gSwitchLine = -1
 
 
 function onInit() {
@@ -104,7 +102,7 @@ function renderGallery(idxs) {
     if (idxs.length === 0) {
         strHtml = getGalleryImgs()
     }
-    
+
     else {
         strHtml += idxs.map(id => {
             return `<img data-id="${id}" onclick="drawImg(this)" src="./img/${id}.jpg" />`
