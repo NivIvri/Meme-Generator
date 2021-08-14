@@ -51,17 +51,17 @@ var galleryImgs =
 var gKeywords = { 'baby': 20, 'cute': 20, 'men': 20, 'happy':20, 'animals':20, 'smile': 20 }
 
 
-
-
-function getMemefromData() {
-    return gMeme
-}
+//RETURN FUNCTIONS
 function getgKeywords() {
     return gKeywords
 }
+
+
 function getgImg() {
     return gImgs
 }
+
+
 function getGalleryImgs() {
     return galleryImgs
 }
