@@ -6,16 +6,19 @@ var gSwitchLine = -1
 
 
 function onInit() {
+    creategMeme()
+    //RENDER GALLERY AND KEY WORDS
+    renderKeywords()
+    document.querySelector('.image-gallery').innerHTML = getGalleryImgs()
+
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     gCtx.stroke()
     resizeCanvas()
-    document.querySelector('.image-gallery').innerHTML = getGalleryImgs()
-
 }
 
 
-//RENDER IMAGE AND CANVAS
+//RENDER FUNCTIONS
 function drawImg(elImg) {
     //remove gallery
     document.querySelector('.main-content-gallery').classList.add('hidden-section')
@@ -23,7 +26,6 @@ function drawImg(elImg) {
     //UPDATE meme IMG ID
     var meme = getMeme()
     meme.selectedImgId = elImg.dataset.id
-    console.log(elImg.dataset.id);
     var img = new Image()
     img.src = elImg.src;
     img.onload = () => {
@@ -31,20 +33,12 @@ function drawImg(elImg) {
     }
 }
 
-
-function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
-}
-
-
 function onChangeText() {
     var meme = getMeme()
     var txt = document.querySelector("[name='text-box']").value;
     if (meme.lines.length - 1 <= meme.selectedLineIdx) {
         meme.selectedLineIdx = meme.lines.length - 1
-        switch (+gMeme.selectedLineIdx) {
+        switch (gMeme.selectedLineIdx) {
             case 0:
                 var posY = 10
                 break;
@@ -72,24 +66,22 @@ function renderImg() {
     var renderImg = findImgById(currImgIdx)
     var img = new Image()
     img.src = renderImg;
-    {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    }
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 
 }
 
 function renderTxt() {
     var meme = getMeme()
     meme.lines.forEach((line, index) => {
-        console.log(index + 'idx');
         gCtx.textBaseline = 'top';
         gCtx.font = `${line.size}px Impact`
         gCtx.fillStyle = line.color
         gCtx.strokeStyle = line.strokeColor
-        gCtx.lineWidth = 1
+        gCtx.lineWidth = 2
         gCtx.textAlign = line.align
-
         var lineHeight = line.size * 1.286;
+
+
         gCtx.fillText(line.txt, line.posX, line.posY, gElCanvas.width)
         gCtx.strokeText(line.txt, line.posX, line.posY, gElCanvas.width)
 
@@ -100,24 +92,30 @@ function renderTxt() {
     });
 }
 
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.offsetWidth
+    gElCanvas.height = elContainer.offsetHeight
+}
 
 
 function renderGallery(idxs) {
     var strHtml = ''
-
-    strHtml += idxs.map(id => {
-        console.log(strHtml);
-        return `<img data-id="${id}" onclick="drawImg(this)" src="./img/${id}.jpg" />`
-    }).join('')
-
     if (idxs.length === 0) {
         strHtml = getGalleryImgs()
     }
+    
+    else {
+        strHtml += idxs.map(id => {
+            return `<img data-id="${id}" onclick="drawImg(this)" src="./img/${id}.jpg" />`
+        }).join('')
+
+    }
     document.querySelector('.image-gallery').innerHTML = strHtml
 }
-renderKeywords()
+
+
 function renderKeywords() {
-    //var gKeywords = { 'baby': 1, 'cute': 5, 'men': 3, 'happy': 5, 'animals': 1, 'smile': 6 }
     var keyWords = getKeywords()
     var strHtml = ''
 
@@ -195,9 +193,7 @@ function onChangeAlign(alignBy) {
 
 function downloadCanvas(elLink) {
     const data = gElCanvas.toDataURL()
-    // console.log('IMG:', data);
     elLink.href = data
-    // elLink.download = 'puki'
 }
 
 function onSwitchLines() {
@@ -212,18 +208,17 @@ function onSwitchLines() {
     renderImg()
     renderTxt()
 }
-//CSS
+
+
+//filter data
 
 function toggleMenu() {
     document.body.classList.toggle('menu-open');
 }
 
 function openGallery() {
-    var meme =getMeme()
-        meme.lines.map(line => {
-        line.txt = ''
-    })
-    document.querySelector("[name='text-box']").valu = ""
+    onInit()
+    document.querySelector("[name='text-box']").value = ""
     document.querySelector('.main-content-gallery').classList.remove('hidden-section')
     document.querySelector('.main-content-editor').classList.add('hidden-section')
     //render all images gallery

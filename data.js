@@ -47,29 +47,15 @@ var galleryImgs =
 <img data-id="11" onclick="drawImg(this)" src="./img/3.jpg" />`
 
 
-var gKeywords = { 'baby': 3, 'cute': 5, 'men':10, 'happy': 5, 'animals': 8, 'smile': 6 }
+var gKeywords = { 'baby': 3, 'cute': 5, 'men': 10, 'happy': 5, 'animals': 8, 'smile': 6 }
 
 
-// var gMeme = {
-//    selectedImgId: 5,
-//    selectedLineIdx: 0,
-//    lines: [
-//        {
-//            txt: 'I never eat Falafel',
-//            size: 40,
-//            align: 'center',
-//            color: 'white',
-//            strokeColor: 'black',
-//            textBaseline: 'top',
-//            posX: gElCanvas.width / 2,
-//            posY: 30
-//        }
-//    ]
-//}
-//function getMemefromData(){
-//return gMeme
-//}
-function getKeywords(){
+
+
+function getMemefromData() {
+    return gMeme
+}
+function getKeywords() {
     return gKeywords
 }
 function getgImg() {
@@ -86,7 +72,6 @@ function filterBy(filterByKey) {
             return (keyWord === filterByKey)
         })
     })
-    console.log(filterImgGallery);
     getIDfromgImg(filterImgGallery)
 }
 

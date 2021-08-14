@@ -6,32 +6,9 @@ getCanvasWidthAndHeight()
 
 
 var gImgs = getgImg()
-var gMeme = {
-    selectedImgId: 5,
-    selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'I never eat Falafel',
-            size: 40,
-            align: 'center',
-            color: 'white',
-            strokeColor: 'black',
-            textBaseline: 'top',
-            posX: gElCanvas.width / 2,
-            posY: 30
-        }
-    ]
-}
+var gMeme
 
-function getCanvasWidthAndHeight() {
-    gElCanvas = document.querySelector('canvas')
-    const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
-}
-
-
-function createMeme() {
+function creategMeme() {
     gMeme = {
         selectedImgId: 5,
         selectedLineIdx: 0,
@@ -44,10 +21,17 @@ function createMeme() {
                 strokeColor: 'black',
                 textBaseline: 'top',
                 posX: gElCanvas.width / 2,
-                posY: 10
+                posY: 30
             }
         ]
     }
+}
+
+function getCanvasWidthAndHeight() {
+    gElCanvas = document.querySelector('canvas')
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.offsetWidth
+    gElCanvas.height = elContainer.offsetHeight
 }
 
 function getMeme() {
@@ -60,10 +44,11 @@ function findImgById(id) {
         if (+img.id === +id)
             return img
     })
-    console.log(imgURL);
     return imgURL.url
 }
 
+
+//EDIT FUNCTIONS
 
 function addNewLine() {
 
