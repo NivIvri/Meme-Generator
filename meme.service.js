@@ -1,43 +1,38 @@
 'use strict'
-var gElCanvas
 const KEY = 'KEY_WORDS_DB'
 var gKeywords
-getCanvasWidthAndHeight()
 _createKeyWords()
 
 
 var gImgs = getgImg()
 var gMeme
 
-function creategMeme() {
+function creategMeme(width) {
     gMeme = {
         selectedImgId: 5,
         selectedLineIdx: 0,
         lines: [
             {
-                txt: 'I never eat Falafel',
+                txt: 'Your text',
                 size: 40,
                 align: 'center',
                 color: 'white',
                 strokeColor: 'black',
                 textBaseline: 'top',
                 font: 'Impact ,sans serif',
-                posX: gElCanvas.width / 2,
+                posX: width / 2,
                 posY: 30
             }
         ]
     }
 }
 
-function getCanvasWidthAndHeight() {
-    gElCanvas = document.querySelector('canvas')
-    const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
-}
-
 function getMeme() {
     return gMeme;
+}
+
+function setMemeImg(imgId) {
+    gMeme.selectedImgId = imgId
 }
 
 
@@ -52,32 +47,30 @@ function findImgById(id) {
 
 //EDIT FUNCTIONS
 
-function addNewLine() {
-
+function addNewLine(width, height) {
     gMeme.selectedLineIdx++;
     if (gMeme.selectedLineIdx === 3) return
     switch (gMeme.selectedLineIdx) {
         case 0:
             var posY = 10
-
             break;
         case 1:
-            var posY = gElCanvas.height - 60
+            var posY = height - 60
             break;
 
         default:
-            var posY = gElCanvas.height / 2;
+            var posY = height / 2;
             break;
     }
     gMeme.lines.push(
         {
-            txt: '',
+            txt: 'Your text',
             size: 40,
             align: 'center',
             color: 'white',
             strokeColor: 'black',
             font: 'Impact, sans serif',
-            posX: gElCanvas.width / 2,
+            posX: width / 2,
             posY
         }
     )
@@ -141,21 +134,18 @@ function changeFont() {
 //filter images
 
 function filterBy(filterByWord) {
-    var filterImgGallery = gImgs.filter(img => {
+    return gImgs.filter(img => {
         return img.keywords.some(keyWord => {
             return (keyWord === filterByWord)
         })
     })
-    getIdfromgImg(filterImgGallery)
 }
 
 
-function getIdfromgImg(filterImgGallery) {
-    var idxs = filterImgGallery.map(img => {
-        return img.id
-    })
-    renderGallery(idxs)
-}
+// function getIdfromgImg(filterImgGallery) {
+//     var imgIds = filterImgGallery.map(img => img.id)
+//    return imgIds
+// }
 
 function _createKeyWords() {
     var loadedKeyWOrds = loadFromStorage(KEY)

@@ -1,34 +1,29 @@
 'use strict'
-var gElCanvas
-var gCtx
+var gElCanvas;
+var gCtx;
 
 
 function onInit() {
-    creategMeme()
     //RENDER GALLERY AND KEY WORDS
-    renderKeywords()
-    document.querySelector('.image-gallery').innerHTML = getGalleryImgs()
 
+    renderKeywords()
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
-    gCtx.stroke()
+    document.querySelector('.image-gallery').innerHTML = getStrGalleryImgs()
     resizeCanvas()
+    creategMeme(gElCanvas.width)
+    // gCtx.stroke()
 }
 
 
 //RENDER FUNCTIONS
-function drawImg(elImg) {
+function openCanvas(elImg) {
     //remove gallery
     document.querySelector('.main-content-gallery').classList.add('hidden-section')
     document.querySelector('.main-content-editor').classList.remove('hidden-section')
     //UPDATE meme IMG ID
-    var meme = getMeme()
-    meme.selectedImgId = elImg.dataset.id
-    var img = new Image()
-    img.src = elImg.src;
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    }
+    setMemeImg(elImg.dataset.id)
+    renderCanvas()
 }
 
 function onChangeText() {
@@ -53,24 +48,27 @@ function onChangeText() {
     }
 
     meme.lines[meme.selectedLineIdx].txt = txt;
-    renderImg()
-    renderTxt()
+    renderCanvas()
+    // renderTxt()
 }
 
 
-function renderImg() {
+function renderCanvas() {
     var meme = getMeme()
-    var currImgIdx = meme.selectedImgId
-    var renderImg = findImgById(currImgIdx)
+    var renderImg = findImgById(meme.selectedImgId)
     var img = new Image()
     img.src = renderImg;
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        renderTxt()
+    }
 
 }
 
 function renderTxt() {
     var meme = getMeme()
-    meme.lines.forEach((line, index) => {
+    document.querySelector("[name='text-box']").value = meme.lines[meme.selectedLineIdx].txt
+    meme.lines.forEach((line, idx) => {
         gCtx.textBaseline = 'top';
         gCtx.font = `${line.size}px ${line.font}`
         gCtx.fillStyle = line.color
@@ -78,16 +76,13 @@ function renderTxt() {
         gCtx.lineWidth = 2
         gCtx.textAlign = line.align
         var lineHeight = line.size * 1.286;
-
-
         gCtx.fillText(line.txt, line.posX, line.posY, gElCanvas.width)
         gCtx.strokeText(line.txt, line.posX, line.posY, gElCanvas.width)
 
-        if (index === meme.selectedLineIdx) {
+        if (idx === meme.selectedLineIdx) {
+            gCtx.strokeStyle = 'black'
             gCtx.strokeRect(10, line.posY, gElCanvas.width - 20, lineHeight);
         }
-
-
     });
 }
 
@@ -98,17 +93,13 @@ function resizeCanvas() {
 }
 
 
-function renderGallery(idxs) {
-    var strHtml = ''
-    if (idxs.length === 0) {
-        strHtml = getGalleryImgs()
-    }
-
+function renderGallery(imgIds) {
+    let strHtml;
+    if (!imgIds.length) strHtml = getStrGalleryImgs()
     else {
-        strHtml += idxs.map(id => {
-            return `<a href="#"><img data-id="${id}" onclick="drawImg(this)" src="./img/${id}.jpg" /></a>`
+        strHtml = imgIds.map(img => {
+            return `<a href="#"><img data-id="${img.id}" onclick="drawImg(this)" src="./img/${img.id}.jpg" /></a>`
         }).join('')
-
     }
     document.querySelector('.image-gallery').innerHTML = strHtml
 }
@@ -118,8 +109,8 @@ function renderKeywords() {
     var keyWords = getKeywords()
     var strHtml = ''
 
-    for (var i in keyWords) {
-        strHtml += `<span style="font-size:${keyWords[i] + 5}px"> ${i}</span>`
+    for (let keyword in keyWords) {
+        strHtml += `<span style="font-size:${keyWords[keyword] + 5}px"> ${keyword}</span>`
     }
     document.querySelector('.key-words').innerHTML = strHtml
 
@@ -128,67 +119,67 @@ function renderKeywords() {
 
 //EDIT FUNCTIONS
 
-function onAddText() {
+function onAddLine() {
     var meme = getMeme()
-    if (meme.lines[0].txt === '') return
-    document.querySelector("[name='text-box']").value = ''
-    addNewLine()
-    renderImg()
-    renderTxt()
+    if (meme.lines.length === 3) return
+    // document.querySelector("[name='text-box']").value = ''
+    addNewLine(gElCanvas.width, gElCanvas.height)
+    renderCanvas()
+    // renderTxt()
 }
 
 
 function onDecreaseText() {
     decreaseText()
-    renderImg()
-    renderTxt()
+    renderCanvas()
+    // renderTxt()
 }
 
 function onIncreaseText() {
     increaseText()
-    renderImg()
-    renderTxt()
+    renderCanvas()
+    // renderTxt()
 }
 
 
 function onChangeColor() {
     var newColor = document.querySelector("[name='color']").value;
     changeColor(newColor)
-    renderImg()
-    renderTxt()
+    renderCanvas()
+    // renderTxt()
 }
 
 function onChangeStroke() {
     var newColor = document.querySelector("[name='strokeColor']").value;
     changeStroke(newColor)
-    renderImg()
-    renderTxt()
+    renderCanvas()
+    // renderTxt()
 }
 
 
 function onMoveUp() {
     MoveUp()
-    renderImg()
-    renderTxt()
+    renderCanvas()
+    // renderTxt()
 
 }
 function onMoveDown() {
     moveDown()
-    renderImg()
-    renderTxt()
+    renderCanvas()
+    // renderTxt()
 }
 
 function onDeleteLine() {
     document.querySelector("[name='text-box']").value = ''
     deleteLine()
-    renderImg()
-    renderTxt()
+    renderCanvas()
+    // renderTxt()
 }
 
 function onChangeAlign(alignBy) {
     changeAlign(alignBy)
-    renderImg()
-    renderTxt()
+    renderCanvas()
+    // renderTxt()
 }
 
 
@@ -199,21 +190,19 @@ function downloadCanvas(elLink) {
 
 function onSwitchLines() {
     var meme = getMeme()
-    if (meme.selectedLineIdx < 2) {
+    if (meme.selectedLineIdx < 2 && meme.selectedLineIdx !== meme.lines.length - 1) {
         meme.selectedLineIdx++;
     }
-    else {
-        meme.selectedLineIdx = 0
+    else meme.selectedLineIdx = 0
 
-    }
-    renderImg()
-    renderTxt()
+    renderCanvas()
+    // renderTxt()
 }
 
 function onChangeFont() {
     changeFont()
-    renderImg()
-    renderTxt()
+    renderCanvas()
+    // renderTxt()
 }
 
 //filter data
@@ -227,12 +216,12 @@ function openGallery() {
     //render all images gallery
     document.querySelector("[name='key-words']").value = ''
     renderGallery([])
-
 }
 
 function onFilterBy() {
     var filterByWord = document.querySelector("[name='key-words']").value.toLowerCase();
     changeFontSize(filterByWord)
-    filterBy(filterByWord)
+    const filteredImgs = filterBy(filterByWord)
+    renderGallery(filteredImgs)
     renderKeywords()
 }
