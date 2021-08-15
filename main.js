@@ -3,6 +3,7 @@ var gElCanvas;
 var gCtx;
 
 
+
 function onInit() {
     //RENDER GALLERY AND KEY WORDS
 

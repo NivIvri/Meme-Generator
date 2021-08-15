@@ -21,7 +21,7 @@ function creategMeme(width) {
                 textBaseline: 'top',
                 font: 'Impact ,sans serif',
                 posX: width / 2,
-                posY: 30
+                posY: 10
             }
         ]
     }

@@ -34,7 +34,7 @@ body {
     list-style-type: none;
     margin: 0;
     top: 0;
-    display: none;
+    /*display: none;*/
 }
 
 .main-nav button {
