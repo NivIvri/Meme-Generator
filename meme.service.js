@@ -158,7 +158,6 @@ function getIdfromgImg(filterImgGallery) {
 }
 
 function _createKeyWords() {
-    debugger
     var loadedKeyWOrds = loadFromStorage(KEY)
 
     if (!loadedKeyWOrds) {
@@ -177,7 +176,6 @@ function getKeywords() {
 }
 
 function changeFontSize(filterByWord) {
-    debugger
     gKeywords = loadFromStorage(KEY)
     for (var i in gKeywords) {
         if (filterByWord === i) {
