@@ -101,6 +101,10 @@ input {
     margin-bottom: 18px;
 }
 
+
+.key-words span{
+    margin: 0 5px;
+}
 /*MAIN-CONTAINER -GALLERY*/
 
 .main-content-gallery {
