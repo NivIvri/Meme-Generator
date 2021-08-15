@@ -269,7 +269,7 @@ canvas {
 
 /*DESKTOP*/
 
-@media (min-width:840px) {
+@media (min-width:450px) {
     .btn-menu-toggle {
         display: none;
     }
